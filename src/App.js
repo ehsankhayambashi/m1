@@ -23,20 +23,23 @@ function App() {
     return cats;
   }
 
-  useEffect(async () => {
-    const res = await getData();
-    const results = res.edges;
-    const cats = getCats(results);
-    const selectedCatId = cats[0].id;
-    const items = cats[0].items;
-    setState((prevValue) => {
-      return {
-        ...prevValue,
-        categories: cats,
-        items: items,
-        selectedCatId,
-      };
-    });
+  useEffect(() => {
+    async function fetchData() {
+      const res = await getData();
+      const results = res.edges;
+      const cats = getCats(results);
+      const selectedCatId = cats[0].id;
+      const items = cats[0].items;
+      setState((prevValue) => {
+        return {
+          ...prevValue,
+          categories: cats,
+          items: items,
+          selectedCatId,
+        };
+      });
+    }
+    fetchData();
   }, []);
 
   function handleClick(items, selectedCatId) {
