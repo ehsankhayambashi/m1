@@ -19,6 +19,7 @@ function App() {
       cat["name"] = result.node.name;
       cat["items"] = result.node.items;
       cats.push(cat);
+      return cats;
     });
     return cats;
   }
